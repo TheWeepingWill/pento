@@ -1,0 +1,25 @@
+<h2><%= @title %></h2>
+
+<%= f = form_for @changeset, "#",
+  id: "user-form",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+  <%= hidden_input f, :image_upload %>
+
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+
+ <%= live_file_input @uploads.image %>
+
+  <div phx-drop-target="<%= @uploads.image.ref %>"> 
+    <%= live_file_input @uploads.image %>
+</div>
+
+<%= for entry <- @uploads.image.entries do %> <p>
+  <%= entry.client_name %> - <%= entry.progress %>% </p>
+<% end %>
+</form>

@@ -1,0 +1,12 @@
+<h4><%= @product.name %></h4> 
+  <%= f = form_for @changeset, "#",
+    id: @id,
+    phx_target: @myself, 
+    phx_change: "validate", 
+    phx_submit: "save" %> 
+        <%= label f, :stars%>
+        <%= select f, :stars, Enum.reverse(1..5) %> 
+        <%= error_tag f, :stars %>
+        <%= hidden_input f, :user_id%> <%= hidden_input f, :product_id%>
+        <%= submit "Save", phx_disable_with: "Saving..." %>
+  </form>

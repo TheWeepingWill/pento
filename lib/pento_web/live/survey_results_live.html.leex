@@ -1,0 +1,9 @@
+<h1>Survey Results</h1>
+<ul>
+  <%= for {p, r} <- @products_with_average_ratings do %>
+    <li> <%= p %> : <%= r %> </li>
+  <%= end %> 
+</ul>
+<div id="survey-results-chart">
+  <%= @chart_svg %>
+</div>
